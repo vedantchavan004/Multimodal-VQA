@@ -57,7 +57,7 @@ Answer: A person sitting with a dog against a scenic sunset.
 ```
 
 ## 🖼️ **Sample Image**
-![Sample Image](path/to/sample_image.jpg)
+![Sample Image](images/stock-photo-159533631.jpg)
 
 ## 🎯 **Future Enhancements**
 - **Dataset Integration:** Connect to larger datasets for more robust testing.
