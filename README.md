@@ -64,9 +64,6 @@ Answer: A person sitting with a dog against a scenic sunset.
 - **Web Interface:** Develop a **Streamlit** or **Flask** app for an interactive UI.
 - **Model Fine-Tuning:** Enhance performance on domain-specific tasks.
 
-## 🤝 **Contributing**
-Feel free to **fork** this project and **submit pull requests**. Suggestions and contributions are always welcome!
-
 ## 📄 **License**
 This project is licensed under the **MIT License**.
 
