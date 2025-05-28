@@ -61,18 +61,6 @@ This script executes the following steps:
    * Prints captions and timings for each stage
    * Reports speedup factors
 
-## Sample Output
-
-```text
-Baseline Caption: a man and his dog
-Baseline CPU time: 0.69 sec
-Quantized Caption: a man and his dog
-Quantized CPU time: 0.48 sec
-Pruned+Quant Caption: a man and his dog
-Pruned+Quant CPU time: 0.49 sec
-Speedup (Quantization): 1.42x
-Speedup (Prune+Quant): 1.40x
-```
 # Results Interpretation
 
 Below is an interpretation of the benchmark outcomes for the BLIP-1 model optimization demo.
