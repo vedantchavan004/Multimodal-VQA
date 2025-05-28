@@ -12,8 +12,7 @@ This repository demonstrates advanced model optimization techniques on the **BLI
 ```plaintext
 blip1-opt-demo/
 ├── quant_prune_blip1_demo.py   # Main demo script
-├── sample_image.jpg            # Example image used for captions
-├── requirements.txt            # Python dependencies
+├── stock-photo-159533631.jpg   # Example image used for captions
 └── README.md                   # This file
 ```
 
@@ -41,7 +40,7 @@ blip1-opt-demo/
 
 4. **Place your test image**
 
-   * Rename or copy an image as `sample_image.jpg` in the repo root.
+   * Rename or copy an image as `stock-photo-159533631.jpg` in the repo root.
 
 ## Demo Script: `quant_prune_blip1_demo.py`
 
