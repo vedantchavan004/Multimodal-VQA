@@ -1,76 +1,102 @@
-# Multimodal Visual Question Answering (VQA) Project with BLIP-2
+# BLIP-1 Optimization Demo
 
-## 📚 **Project Overview**
-The **Multimodal Visual Question Answering (VQA) Project** utilizes the **BLIP-2 (Bootstrapping Language-Image Pre-training)** model to answer natural language questions about images. The project combines **image analysis** with **natural language processing (NLP)** to generate meaningful responses to visual inputs. This is particularly useful for applications like **image captioning**, **interactive AI assistants**, and **assistive technologies**.
+This repository demonstrates advanced model optimization techniques on the **BLIP-1** image-captioning model (`Salesforce/blip-image-captioning-base`). It provides:
 
-## 🚀 **Features**
-- **Multimodal Input:** Combines images and text for advanced AI interactions.
-- **Advanced Model:** Uses **BLIP-2 (Salesforce/blip2-flan-t5-xl)** for high-quality image-to-text generation.
-- **GPU Acceleration:** Optimized for **NVIDIA A100 GPUs**, but also works on CPU.
-- **Easy Integration:** The code is modular and easy to integrate into other applications.
+* **Baseline inference** on CPU
+* **Dynamic quantization** of Linear layers
+* **Unstructured pruning** (L1) combined with quantization
+* **Benchmark results** comparing speedups and validating accuracy
 
-## 📂 **Dataset**
-The project uses a **custom image** for testing, eliminating the need for large datasets. However, it can be extended to use datasets like **COCO**, **Flickr30k**, or **Visual Genome** for large-scale applications.
+## Repository Structure
 
-## 🛠️ **Technologies Used**
-- **Python:** Programming language.
-- **PyTorch:** Deep learning framework.
-- **Hugging Face Transformers:** For the **BLIP-2 model**.
-- **Matplotlib:** To display images and results.
-- **PIL (Python Imaging Library):** For image processing.
-
-## 🧠 **Model Architecture**
-- **Image Processing:** Utilizes the **BLIP-2 processor** to preprocess images.
-- **Visual-Language Fusion:** The **BLIP-2 model** combines **image embeddings** with **textual inputs**.
-- **Text Generation:** Generates **natural language responses** to image-based questions.
-
-## ⚙️ **Installation**
-```sh
-# Clone the repository
-git clone https://github.com/vedantchavan004/Multimodal-VQA.git
-cd vqa-blip2-project
-
-# Install dependencies
-pip install -r requirements.txt
+```plaintext
+blip1-opt-demo/
+├── quant_prune_blip1_demo.py   # Main demo script
+├── sample_image.jpg            # Example image used for captions
+├── requirements.txt            # Python dependencies
+└── README.md                   # This file
 ```
 
-### **Dependencies:**
-- `torch`
-- `transformers`
-- `matplotlib`
-- `PIL`
+## Setup and Installation
 
-## 🚦 **How to Run**
-```sh
-# Run the project
-python main.py
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/yourusername/blip1-opt-demo.git
+   cd blip1-opt-demo
+   ```
+
+2. **Create a virtual environment** (recommended)
+
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+3. **Install dependencies**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Place your test image**
+
+   * Rename or copy an image as `sample_image.jpg` in the repo root.
+
+## Demo Script: `quant_prune_blip1_demo.py`
+
+This script executes the following steps:
+
+1. **Baseline CPU inference**:
+
+   * Loads BLIP-1 model and processor
+   * Generates a caption for `sample_image.jpg`
+   * Measures average CPU inference time
+
+2. **Dynamic quantization**:
+
+   * Applies PyTorch dynamic quantization to all `torch.nn.Linear` layers
+   * Re-runs inference and measures speedup
+
+3. **Unstructured pruning + quantization**:
+
+   * Applies L1 unstructured pruning (30% sparsity) to Linear weights
+   * Applies dynamic quantization on the pruned model
+   * Re-runs inference and measures speedup
+
+4. **Summary**:
+
+   * Prints captions and timings for each stage
+   * Reports speedup factors
+
+## Sample Output
+
+```text
+Baseline Caption: a man and his dog
+Baseline CPU time: 0.69 sec
+Quantized Caption: a man and his dog
+Quantized CPU time: 0.48 sec
+Pruned+Quant Caption: a man and his dog
+Pruned+Quant CPU time: 0.49 sec
+Speedup (Quantization): 1.42x
+Speedup (Prune+Quant): 1.40x
 ```
 
-1. **Ensure the image file** is available at the specified path.
-2. **Update the question** in `main.py` if needed.
+## requirements.txt
 
-## 📝 **Example Output**
-```sh
-Using device: cuda
-Question: What is in the image?
-Answer: A person sitting with a dog against a scenic sunset.
+```text
+torch>=2.0.0
+transformers>=4.30.0
+Pillow
 ```
 
-## 🖼️ **Sample Image**
-![Sample Image](images/stock-photo-159533631.jpg)
+## Next Steps / Extensions
 
-## 🎯 **Future Enhancements**
-- **Dataset Integration:** Connect to larger datasets for more robust testing.
-- **Web Interface:** Develop a **Streamlit** or **Flask** app for an interactive UI.
-- **Model Fine-Tuning:** Enhance performance on domain-specific tasks.
+* **Structured pruning** to remove entire neurons or heads for real compute savings
+* **ONNX export & quantization** for cross-platform deployment
+* **TensorRT integration** for GPU edge acceleration
+* **Beam search or top‑k sampling** to demonstrate decoding optimizations
 
-## 📄 **License**
-This project is licensed under the **MIT License**.
+## License
 
-## 🙏 **Acknowledgements**
-- [Hugging Face](https://huggingface.co/) for the **BLIP-2 model**.
-- [PyTorch](https://pytorch.org/) for the deep learning framework.
-- [Matplotlib](https://matplotlib.org/) and [PIL](https://pillow.readthedocs.io/) for visualization.
-
----
-
+This project is released under the MIT License.
