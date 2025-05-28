@@ -1,4 +1,4 @@
-# BLIP-1 Optimization Demo
+# BLIP-1 Optimization for Efficient Image Captioning
 
 This repository demonstrates advanced model optimization techniques on the **BLIP-1** image-captioning model (`Salesforce/blip-image-captioning-base`). It provides:
 
